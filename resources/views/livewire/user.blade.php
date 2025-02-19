@@ -45,10 +45,10 @@
                                         <td>
                                             <button wire:click="pilihMenu('edit')"
                                                 class="btn {{ $pilihanMenu == 'edit' ? 'btn-primary' : 'btn-outline-primary' }}">
-                                                Tambah Pengguna</button>
+                                                Edit Pengguna</button>
                                             <button wire:click="pilihMenu('hapus')"
                                                 class="btn {{ $pilihanMenu == 'hapus' ? 'btn-primary' : 'btn-outline-primary' }}">
-                                                Tambah Pengguna</button>
+                                                Hapus Pengguna</button>
                                         </td>
                                     </tr>
                                 @endforeach
@@ -62,7 +62,38 @@
                         Tambah Pengguna
                     </div>
                     <div class="card-body">
-                        test
+                        <form wire:submit="simpan">
+                            <label>Nama</label>
+                            <input type="text" class="form-control" wire:model='nama' />
+                            @error('nama')
+                                <span class="text-danger">{{ $message }}</span>
+                            @enderror
+                            <br>
+                            <label>Email</label>
+                            <input type="email" class="form-control" wire:model='email' />
+                            @error('email')
+                                <span class="text-danger">{{ $message }}</span>
+                            @enderror
+                            <br>
+                            <label>Password</label>
+                            <input type="password" class="form-control" wire:model='password' />
+                            @error('password')
+                                <span class="text-danger">{{ $message }}</span>
+                            @enderror
+                            <br>
+                            <label>Role</label>
+                            <select class="form-control" wire:model='role' id="">
+                                <option>-- Pilih Peran --</option>
+                                <option value="kasir">Kasir</option>
+                                <option value="admin">Admin</option>
+                            </select>
+                            @error('role')
+                                <span class="text-danger">{{ $message }}</span>
+                            @enderror
+                            <br>
+
+                            <button type="submit" class="btn btn-primary mt-3">Simpan</button>
+                        </form>
                     </div>
                 </div>
             @elseif ($pilihanMenu == 'edit')

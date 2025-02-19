@@ -9,6 +9,24 @@ class User extends Component
 {
     public $pilihanMenu = 'lihat';
     public $nama, $email, $role, $password;
+    public $penggunaTerpilih;
+
+    public function pilihHapus($id)
+    {
+        $this->penggunaTerpilih = modelUser::findOrFail($id);
+        $this->pilihanMenu = 'hapus';
+    }
+
+    public function hapus()
+    {
+        $this->penggunaTerpilih->delete();
+        $this->reset();
+    }
+
+    public function batal()
+    {
+        $this->reset();
+    }
 
     public function simpan()
     {

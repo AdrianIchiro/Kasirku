@@ -46,7 +46,7 @@
                                             <button wire:click="pilihMenu('edit')"
                                                 class="btn {{ $pilihanMenu == 'edit' ? 'btn-primary' : 'btn-outline-primary' }}">
                                                 Edit Pengguna</button>
-                                            <button wire:click="pilihMenu('hapus')"
+                                            <button wire:click="pilihHapus({{ $pengguna->id }})"
                                                 class="btn {{ $pilihanMenu == 'hapus' ? 'btn-primary' : 'btn-outline-primary' }}">
                                                 Hapus Pengguna</button>
                                         </td>
@@ -106,6 +106,17 @@
                     </div>
                 </div>
             @elseif ($pilihanMenu == 'hapus')
+                <div class="card border-danger">
+                    <div class="card-header bg-danger text-white">
+                        Hapus Pengguna
+                    </div>
+                    <div class="card-body">
+                        Anda yakin akan menghapus pengguna ini?
+                        <p>Nama : {{ $penggunaTerpilih->name }}</p>
+                        <button class="btn btn-danger" wire:click='hapus'>Hapus</button>
+                        <button class="btn btn-secondary" wire:click='batal'>Batal</button>
+                    </div>
+                </div>
             @endif
         </div>
     </div>
